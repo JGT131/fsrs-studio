@@ -1,0 +1,361 @@
+@import url("https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --fsrs-bg: #000000;
+    --fsrs-bg-2: #0a0a0a;
+    --fsrs-bg-3: #141414;
+    --fsrs-line: rgba(255, 255, 255, 0.08);
+    --fsrs-line-strong: rgba(255, 255, 255, 0.16);
+    --fsrs-text: #ffffff;
+    --fsrs-muted: #cbd5e1;
+    --fsrs-dim: #94a3b8;
+    --fsrs-red: #ef4444;
+    --fsrs-red-dark: #b91c1c;
+    --fsrs-amber: #f59e0b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--fsrs-bg);
+    color: var(--fsrs-text);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+::selection {
+    background: var(--fsrs-red);
+    color: #ffffff;
+}
+
+/* Custom cursor for primary CTAs handled via class */
+
+@layer base {
+    :root {
+        --background: 0 0% 0%;
+        --foreground: 0 0% 98%;
+        --card: 0 0% 4%;
+        --card-foreground: 0 0% 98%;
+        --popover: 0 0% 4%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 0 84% 60%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 0 0% 8%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 0 0% 10%;
+        --muted-foreground: 215 20% 65%;
+        --accent: 0 0% 8%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 0 0% 14%;
+        --input: 0 0% 14%;
+        --ring: 0 84% 60%;
+        --radius: 0px;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* === FSRS utility classes === */
+
+.fsrs-heading {
+    font-family: "Chivo", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.fsrs-wordmark {
+    font-family: "Chivo", sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.06em;
+}
+
+.fsrs-mono {
+    font-family: "JetBrains Mono", monospace;
+}
+
+.fsrs-overline {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 15px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--fsrs-red);
+    font-weight: 500;
+}
+
+.fsrs-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fsrs-dim);
+}
+
+/* Background grid */
+.fsrs-grid-bg {
+    background-image:
+        linear-gradient(to right, var(--fsrs-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--fsrs-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+}
+
+.fsrs-grid-bg-fine {
+    background-image:
+        linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px
+        );
+    background-size: 32px 32px;
+}
+
+/* Crosshair corner marks */
+.fsrs-corner-marks::before,
+.fsrs-corner-marks::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: var(--fsrs-red);
+}
+.fsrs-corner-marks::before {
+    top: -1px;
+    left: -1px;
+    border-top: 1px solid;
+    border-left: 1px solid;
+}
+.fsrs-corner-marks::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+}
+
+/* Primary CTA */
+.fsrs-cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--fsrs-red);
+    color: #ffffff;
+    font-family: "Chivo", sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 18px 28px;
+    border: 1px solid var(--fsrs-red);
+    cursor: pointer;
+    transition:
+        background 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+}
+.fsrs-cta:hover {
+    background: #000000;
+    color: var(--fsrs-red);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--fsrs-red);
+}
+.fsrs-cta:active {
+    transform: translate(0, 0);
+    box-shadow: 0 0 0 var(--fsrs-red);
+}
+
+.fsrs-cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: var(--fsrs-text);
+    border: 1px solid var(--fsrs-line-strong);
+    padding: 14px 22px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+        background 160ms ease,
+        border-color 160ms ease;
+}
+.fsrs-cta-ghost:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--fsrs-red);
+    color: var(--fsrs-red);
+}
+
+/*
+ * fsrs-cta-claim — unified red-glow ghost style for the primary
+ * "Claim My Founding Spot" / "Start Founding Beta" CTAs across the site.
+ * Mirrors the demo button's ghost shape with a sharp technical red glow.
+ */
+.fsrs-cta-claim {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    background: transparent;
+    color: var(--fsrs-red);
+    border: 1px solid rgba(239, 68, 68, 0.55);
+    padding: 14px 22px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow:
+        0 0 0 1px rgba(239, 68, 68, 0.25),
+        0 0 22px -10px rgba(239, 68, 68, 0.45);
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease,
+        box-shadow 240ms ease;
+}
+.fsrs-cta-claim:hover {
+    background: rgba(239, 68, 68, 0.06);
+    border-color: rgba(239, 68, 68, 1);
+    color: #fecaca;
+    box-shadow:
+        0 0 0 1px rgba(239, 68, 68, 0.85),
+        0 0 40px -4px rgba(239, 68, 68, 0.85);
+}
+.fsrs-cta-claim:active {
+    transform: translate(0, 1px);
+    box-shadow:
+        0 0 0 1px rgba(239, 68, 68, 1),
+        0 0 22px -8px rgba(239, 68, 68, 0.85);
+}
+.fsrs-cta-claim:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* Section borders */
+.fsrs-section {
+    border-top: 1px solid var(--fsrs-line);
+    border-bottom: 1px solid var(--fsrs-line);
+}
+
+/* Status dot */
+.fsrs-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: var(--fsrs-red);
+    box-shadow: 0 0 12px var(--fsrs-red);
+    animation: fsrs-pulse 1.6s ease-in-out infinite;
+}
+@keyframes fsrs-pulse {
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.4;
+        transform: scale(0.85);
+    }
+}
+
+/* Scanline */
+.fsrs-scanline {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.02) 0px,
+        rgba(255, 255, 255, 0.02) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+/* Disclaimer block emphasis */
+.fsrs-disclaimer {
+    position: relative;
+    background: rgba(245, 158, 11, 0.06);
+    border: 2px solid var(--fsrs-amber);
+    color: #fcd34d;
+}
+.fsrs-disclaimer-strong {
+    color: #fde68a;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Marquee */
+@keyframes fsrs-marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+.fsrs-marquee {
+    animation: fsrs-marquee 60s linear infinite;
+}
+
+/* Entry animations */
+@keyframes fsrs-rise {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.fsrs-rise {
+    animation: fsrs-rise 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Modal customisation */
+.fsrs-input {
+    width: 100%;
+    background: #000;
+    border: 1px solid var(--fsrs-line-strong);
+    color: var(--fsrs-text);
+    padding: 14px 14px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 160ms ease;
+}
+.fsrs-input:focus {
+    border-color: var(--fsrs-red);
+}
+.fsrs-input::placeholder {
+    color: var(--fsrs-dim);
+}

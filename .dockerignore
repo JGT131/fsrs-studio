@@ -1,0 +1,40 @@
+# Dependencies
+frontend/node_modules
+**/node_modules
+
+# Build outputs & caches
+frontend/build
+frontend/.cache
+**/__pycache__/
+*.pyc
+.pytest_cache
+.coverage
+
+# Env & secrets
+.env
+.env.*
+*.env
+credentials.json
+*.key
+*.pem
+
+# Git & IDE
+.git
+.gitignore
+.vscode
+.idea
+.DS_Store
+
+# Logs & temp
+*.log
+logs/
+temp/
+
+# Docker
+Dockerfile*
+.dockerignore
+
+# Other junk
+.gitattributes
+README*.md
+*.pdf
